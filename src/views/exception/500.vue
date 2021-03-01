@@ -1,22 +1,19 @@
 <template>
   <div id="main">
     <section class="home-404">
-      <h1>Github Login....</h1>
-      <p>Please wait patiently.</p>
+      <h1>Oh, Oooops!</h1>
+      <p>Sorry, the server is wrong.Please try again</p>
+      <a href="/" class="btn">Go home</a>
     </section>
   </div>
 </template>
-
 <script>
 export default {
-  name: 'HelloWorld',
   data() {
-    return {
-    }
+    return {}
   }
 }
 </script>
-
 <style scoped>
   #main {
     height: 100%;

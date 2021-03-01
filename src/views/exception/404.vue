@@ -1,22 +1,21 @@
 <template>
+  <!--  <a-result status="404" title="404" sub-title="Sorry, the page you visited does not exist.">-->
+  <!--  </a-result>-->
   <div id="main">
-    <section class="home-404">
-      <h1>Github Login....</h1>
-      <p>Please wait patiently.</p>
-    </section>
+  <section class="home-404">
+    <h1>Oh, Oooops!</h1>
+    <p>Sorry, the page you visited does not exist.Please try again</p>
+    <a href="/" class="btn">Go home</a>
+  </section>
   </div>
 </template>
-
 <script>
 export default {
-  name: 'HelloWorld',
   data() {
-    return {
-    }
+    return {}
   }
 }
 </script>
-
 <style scoped>
   #main {
     height: 100%;
