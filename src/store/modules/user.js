@@ -35,6 +35,14 @@ const actions = {
       })
     })
   },
+  // 登出
+  logout({ commit, state }) {
+    return new Promise((resolve) => {
+      removeToken()
+      resolve()
+      commit('SET_TOKEN', '')
+    })
+  },
   // 用户Github账号登录
   githubLogin({ commit }, code) {
     return new Promise((resolve, reject) => {

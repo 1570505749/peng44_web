@@ -1,33 +1,47 @@
 <template>
-  <a-layout>
+  <a-layout id="components-layout-demo-custom-trigger" style="min-height: 1040px">
     <a-back-top :visibility-height="100" />
-    <div class="index-background-image" style="background-image:url(https://s1.ax1x.com/2020/09/20/w71E59.jpg)">
-      <div :style="{height:'59px', zIndex: 1, width: '100%',backgroundColor:'rgba(255,255,255,0)' }">
+    <a-layout-sider v-model="collapsed" :trigger="null" collapsible>
+      <div class="logo"><h1 v-if="!collapsed" style="color: white;margin-left: 30%;font-weight: 800">管理员端</h1></div>
+      <simple-menu />
+    </a-layout-sider>
+    <a-layout>
+      <a-layout-header style="background: #ffffff; padding: 0">
+        <a-icon
+          class="trigger"
+          :type="collapsed ? 'menu-unfold' : 'menu-fold'"
+          @click="() => (collapsed = !collapsed)"
+        />
         <menu-login />
-        <simple-menu v-show="show" :style="{marginLeft:'17%'}" />
-      </div>
-      <div class="site-mid">
-        <p :style="{fontSize:'300%',fontWeight:'600'}">生活原本沉闷，但跑起来就有风。</p>
-      </div>
-    </div>
-    <a-layout-content :style="{ background: '#F0F2F5',height:'100%', width: '100%' }">
-      <router-view />
-    </a-layout-content>
-    <a-layout-footer  :style="{textAlign: 'center',color:'#001529', background: '#FFFFFF',display: 'block',bottom: '0px', width: '100%',marginTop: '10px' }">
-      Peng44Web ©2020 Created by peng44 | 湘ICP备20005096号
-    </a-layout-footer>
+      </a-layout-header>
+      <a-layout style="padding: 0 24px 24px">
+        <a-breadcrumb style="margin: 16px 0">
+          <a-breadcrumb-item>Home</a-breadcrumb-item>
+          <a-breadcrumb-item>List</a-breadcrumb-item>
+          <a-breadcrumb-item>App</a-breadcrumb-item>
+        </a-breadcrumb>
+        <a-layout-content
+          :style="{ margin: '0 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
+        >
+          <router-view />
+        </a-layout-content>
+      </a-layout>
+      <a-layout-footer :style="{textAlign: 'center',color:'#001529', background: '#FFFFFF',display: 'block',bottom: '0px', width: '100%',marginTop: '10px' }">
+        SRMS ©2021 Created by pengF | 湘ICP备20005096号
+      </a-layout-footer>
+    </a-layout>
   </a-layout>
 </template>
 
 <script>
 import SimpleMenu from './menu/Menu'
 import MenuLogin from './menu/MenuLogin'
+
 export default {
   components: { SimpleMenu, MenuLogin },
   data() {
     return {
-      collapsed: true,
-      show: true
+      collapsed: false
     }
   },
   created() {
@@ -69,25 +83,21 @@ export default {
 </script>
 
 <style>
-  #components-layout-demo-fixed .logo img {
-    width: 80px;
-    height: 31px;
-    margin: 16px 14px 16px 0;
-    float: left;
-  }
-  .index-background-image {
-    height: 520px;
-    width: 100%;
-    background-size: cover;
-    background-position: 50%;
-    background-repeat: no-repeat;
-    -webkit-animation: fade-in-bottom 1s .3s backwards;
-    animation: fade-in-bottom 1s .3s backwards;
-    background-attachment: inherit;
-  }
-  .site-mid{
-    position: relative;
-    text-align: center;
-    top:200px;
-  }
+#components-layout-demo-custom-trigger .trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+#components-layout-demo-custom-trigger .trigger:hover {
+  color: #1890ff;
+}
+
+#components-layout-demo-custom-trigger .logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
+}
 </style>

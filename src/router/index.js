@@ -18,6 +18,8 @@ VueRouter.prototype.push = function push(location, onResolve, onReject) {
 
 Vue.use(VueRouter)
 
+const whiteList = ['/sys/login', '/sys/forget']
+
 const routes = constantRouterMap
 
 const router = new VueRouter({
@@ -40,20 +42,10 @@ router.beforeEach((to, from, next) => {
       })
     }
   }
-  if (to.name === 'GiteeLogin') {
-    console.log(to.query.code)
-    if (to.query.code !== undefined) {
-      store.dispatch('user/giteeLogin', to.query.code).then(() => {
-        next({ path: '/' })
-      }).catch(() => {
-        console.log('error')
-      })
-    }
-  }
-  if (store.getters.category.length === 0) {
-    store.dispatch('global/getAllCategory').then(res => null)
-  }
-  if (store.getters.token && store.getters.addRouters.length === 0) {
+  // if (store.getters.category.length === 0) {
+  //   store.dispatch('global/getAllCategory').then(res => null)
+  // }
+  if (store.getters.token && store.getters.addRouters.length !== 0) {
     store.dispatch('settings/GenerateRoutes').then(() => {
       // 动态添加可访问路由表
       router.addRoutes(store.getters.addRouters)
@@ -66,6 +58,16 @@ router.beforeEach((to, from, next) => {
         next({ path: redirect })
       }
     })
+  }
+  if (!store.getters.token) {
+    if (whiteList.indexOf(to.path) !== -1) {
+      // in the free login whitelist, go directly
+      next()
+    } else {
+      // other pages that do not have permission to access are redirected to the login page.
+      next(`/sys/login?redirect=${to.path}`)
+      NProgress.done()
+    }
   }
   next()
   NProgress.done() // 如果当前页面是登录的，则不会在每个钩子之后触发，因此请手动处理它

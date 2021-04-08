@@ -1,19 +1,11 @@
 <template>
   <a-dropdown placement="bottomCenter">
-      <a-avatar
-        shape="square"
-        :src="userIcon"
-        style="margin-bottom:5px;color: #f56a00; backgroundColor: #fde3cf"
-      />
+    <a-avatar
+      shape="square"
+      src="https://s1.ax1x.com/2020/09/20/w73DOK.jpg"
+      style="margin-bottom:5px;color: #f56a00; backgroundColor: #fde3cf"
+    />
     <a-menu slot="overlay" :style="{marginTop:'5px'}">
-      <a-menu-item>
-        <a href="/userInfo">
-          个人主页
-        </a>
-      </a-menu-item>
-      <a-menu-item>
-        <a href="/profile">账号管理</a>
-      </a-menu-item>
       <a-menu-item>
         <a @click="logout">退出登录</a>
       </a-menu-item>
@@ -23,13 +15,9 @@
 
 <script>
 import notification from 'ant-design-vue/lib/notification'
-import { mapGetters } from 'vuex'
 export default {
   name: 'LoginBox',
   computed: {
-    ...mapGetters([
-      'name', 'userIcon'
-    ])
   },
   methods: {
     logout(e) {

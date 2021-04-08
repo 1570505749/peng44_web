@@ -2,7 +2,11 @@
 const Home = () => import('../views/home')
 const About = () => import('../views/about')
 const Read = () => import('../views/read')
+const Project = () => import('../views/project')
+const Achievements = () => import('../views/achievements')
 const NotFoundComponent = () => import('../views/exception/404')
+const UserList = () => import('../views/sys/user')
+const Paper = () => import('../views/achievements/paper')
 /**
  * 基础路由
  * @type { *[] }
@@ -19,9 +23,50 @@ export const constantRouterMap = [
         name: 'Home',
         component: Home,
         mate: {
-          title: '主页',
-          icon: 'home',
+          title: '仪表盘',
+          icon: 'dashboard',
           isLoading: true
+        }
+      },
+      {
+        path: '/project',
+        name: 'Project',
+        component: Project,
+        mate: {
+          title: '项目管理',
+          icon: 'project',
+          isLoading: true
+        }
+      },
+      {
+        path: '/assessment',
+        name: 'Assessment',
+        component: Project,
+        mate: {
+          title: '考核管理',
+          icon: 'line-chart',
+          isLoading: true
+        }
+      },
+      {
+        path: '/achievements',
+        name: 'Achievements',
+        mate: {
+          title: '成果管理',
+          icon: 'apartment',
+          isLoading: true,
+          children: [{ path: '/paper', title: '论文' }, { path: '/report', title: '报告' }, { path: '/intellectual', title: '知识产权' }]
+        }
+      },
+      {
+        path: '/system',
+        name: 'System',
+        component: About,
+        mate: {
+          title: '系统管理',
+          icon: 'setting',
+          isLoading: true,
+          children: [{ path: '/list', title: '用户列表' }, { path: '/roles', title: '角色管理' }]
         }
       },
       {
@@ -42,23 +87,63 @@ export const constantRouterMap = [
           title: '阅读',
           isLoading: false
         }
+      },
+      {
+        path: '/achievements/report',
+        name: 'Report',
+        component: Achievements,
+        mate: {
+          isLoading: false
+        }
+      },
+      {
+        path: '/achievements/paper',
+        name: 'Paper',
+        component: Paper,
+        mate: {
+          isLoading: false
+        }
+      },
+      {
+        path: '/achievements/intellectual',
+        name: 'Intellectual',
+        component: Achievements,
+        mate: {
+          isLoading: false
+        }
+      },
+      {
+        path: '/system/list',
+        name: '用户列表',
+        component: UserList,
+        mate: {
+          isLoading: false
+        }
+      },
+      {
+        path: '/system/roles',
+        name: '角色管理',
+        component: Achievements,
+        mate: {
+          isLoading: false
+        }
       }
     ]
   },
   {
-    path: '/peng44/login',
+    path: '/sys/login',
     name: 'Login',
     component: () => import('../views/login')
+  },
+  {
+    path: '/sys/forget',
+    name: '忘记密码',
+    component: () => import('../views/login/forgot')
   },
   {
     path: '/login/github',
     name: 'GithubLogin',
     component: () => import('../components/HelloWorld')
-  },
-  {
-    path: '/login/gitee',
-    name: 'GiteeLogin',
-    component: () => import('../views/login/index')
   },
   {
     path: '/exception/403',
@@ -83,5 +168,10 @@ export const constantRouterMap = [
     mate: {
       isLoading: false
     }
+  },
+  {
+    path: '*',
+    redirect: '/exception/404',
+    hidden: true
   }
 ]

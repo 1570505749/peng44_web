@@ -2,16 +2,17 @@
   <div id="menu-item">
     <search-box />
     <a-divider type="vertical" />
-    <a v-if="isLogin" id="loginR" @click="showModal">控制台</a>
+    <login-box />
   </div>
 </template>
 
 <script>
 import SearchBox from './downBox/SearchBox'
+import LoginBox from './downBox/LoginBox'
 export default {
   name: 'MenuLogin',
   components: {
-    SearchBox
+    SearchBox, LoginBox
   },
   data() {
     return {
@@ -36,7 +37,6 @@ export default {
 <style>
     #menu-item{
       float: right;
-      margin-top: 10px;
       margin-right: 10%;
     }
     #menu-item span {

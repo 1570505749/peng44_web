@@ -49,7 +49,7 @@
               >
                 记住我
               </a-checkbox>
-              <a class="login-form-forgot">
+              <a class="login-form-forgot" href="/sys/forget">
                 忘记密码？
               </a>
               <a-button type="primary" html-type="submit" class="login-form-button">
@@ -63,13 +63,7 @@
               <template slot="title">
                 <span>GitHub</span>
               </template>
-              <a-icon style="font-size: 35px;color: black" theme="filled" type="github" @click="gotoGithub" />
-            </a-tooltip>
-            <a-tooltip placement="bottom">
-              <template slot="title">
-                <span>Gitee</span>
-              </template>
-              <img :style="{height:'40px',width: '40px',marginLeft:'10px',marginBottom:'20px'}" src="https://ai.bdstatic.com/file/B4220CD9991547E58FBD0D5BC77264B0" @click="gotoGitee">
+              <a-icon style="font-size: 35px;color: black;margin-left: 30px;" theme="filled" type="github" @click="gotoGithub" />
             </a-tooltip>
           </div>
         </a-spin>
@@ -79,7 +73,7 @@
 </template>
 
 <script>
-import { githubLogin, giteeLogin,githubLoginTest } from '../../apis/user/login'
+import { githubLogin, githubLoginTest } from '../../apis/user/login'
 export default {
   components: {
   },
@@ -109,13 +103,6 @@ export default {
       githubLogin().then(res => {
         this.spinning = true
         githubLoginTest(res.msg)
-        // window.location.href = res.msg
-      })
-    },
-    gotoGitee() {
-      giteeLogin().then(res => {
-        this.spinning = true
-        window.location.href = res.msg
       })
     }
   }
@@ -123,7 +110,7 @@ export default {
 </script>
 <style scoped>
   #login-page-background {
-    background: url(https://s1.ax1x.com/2020/09/23/wXsqvn.jpg) no-repeat 100%;
+    background: url(https://s1.ax1x.com/2020/09/20/w73DOK.jpg) no-repeat 100%;
     overflow:hidden;
     position: absolute;
     z-index:999;

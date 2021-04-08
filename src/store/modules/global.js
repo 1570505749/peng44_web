@@ -1,5 +1,5 @@
 // 全局变量设置
-import categoryApi from '@/apis/article/category'
+// import categoryApi from '@/apis/article/category'
 
 const state = {
   category: [],
@@ -16,13 +16,6 @@ const mutations = {
 }
 
 const actions = {
-  getAllCategory({ commit }) {
-    return new Promise((resolve, reject) => {
-      categoryApi.getAllCategory().then(res => {
-        commit('SET_TYPE', res.data)
-      })
-    })
-  },
   isMobile({ commit }, mobile) {
     return new Promise((resolve, reject) => {
       commit('SET_ISMOBILE', mobile)

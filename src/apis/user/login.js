@@ -32,13 +32,6 @@ export function getGithubToken(accessToken) {
   })
 }
 
-export function giteeLogin() {
-  return request({
-    url: '/accounts/gitee/login',
-    method: 'get'
-  })
-}
-
 export function getGiteeToken(accessToken) {
   return request({
     url: 'login/gitee?code=' + accessToken,
@@ -60,5 +53,15 @@ export function getRoleMenu() {
   return request({
     url: '/getRoleMenu',
     method: 'get'
+  })
+}
+
+export function SmsCaptcha(mobile) {
+  return request({
+    url: '/accounts/code/sms?mobile=' + mobile + '',
+    method: 'get',
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8'
+    }
   })
 }

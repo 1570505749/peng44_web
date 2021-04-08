@@ -39,11 +39,10 @@ function filterAsyncRouter(routerMap) {
   for (const type in Components) {
     components = { ...Components[type], ...components }
   }
-  const accessedRouters = routerMap.filter(route => {
+  return routerMap.filter(route => {
     route.component = components[route.component]
     return true
   })
-  return accessedRouters
 }
 
 export default {

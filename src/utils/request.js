@@ -20,6 +20,7 @@ const codeMessage = {
   410: '请求的资源被永久删除，且不会再得到的。',
   422: '当创建一个对象时，发生一个验证错误。',
   500: '服务器发生错误，请检查服务器。',
+  501: '身份认证错误，请重新登录。',
   502: '网关错误。',
   503: '服务不可用，服务器暂时过载或维护。',
   504: '网关超时。'
@@ -88,6 +89,18 @@ const err = (error) => {
           description: errorText
         })
         router.push({ path: `/exception/404` })
+      } else if (status === 501) {
+        this.$store.dispatch('user/logout').then(() => {
+          location.assign('/')
+        }).catch(() => {
+          notification.error({
+            message: '登出失败'
+          })
+        })
+        notification.error({
+          message: `请求错误 ${status}: ${url}`,
+          description: errorText
+        })
       } else {
         notification.error({
           message: `请求错误 ${status}: ${url}`,
