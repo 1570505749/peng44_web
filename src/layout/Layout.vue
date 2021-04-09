@@ -14,14 +14,9 @@
         />
         <menu-login />
       </a-layout-header>
-      <a-layout style="padding: 0 24px 24px">
-        <a-breadcrumb style="margin: 16px 0">
-          <a-breadcrumb-item>Home</a-breadcrumb-item>
-          <a-breadcrumb-item>List</a-breadcrumb-item>
-          <a-breadcrumb-item>App</a-breadcrumb-item>
-        </a-breadcrumb>
+      <a-layout style="padding: 10px 15px 15px">
         <a-layout-content
-          :style="{ margin: '0 16px', padding: '24px', background: '#fff', minHeight: '280px' }"
+          :style="{ margin: '0 16px', padding: '15px', background: '#fff', minHeight: '280px' }"
         >
           <router-view />
         </a-layout-content>

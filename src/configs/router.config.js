@@ -7,6 +7,10 @@ const Achievements = () => import('../views/achievements')
 const NotFoundComponent = () => import('../views/exception/404')
 const UserList = () => import('../views/sys/user')
 const Paper = () => import('../views/achievements/paper')
+const Management = () => import('../views/sys/management')
+const Setting = () => import('../views/sys/setting')
+const Award = () => import('../views/achievements/award')
+
 /**
  * 基础路由
  * @type { *[] }
@@ -55,7 +59,12 @@ export const constantRouterMap = [
           title: '成果管理',
           icon: 'apartment',
           isLoading: true,
-          children: [{ path: '/paper', title: '论文' }, { path: '/report', title: '报告' }, { path: '/intellectual', title: '知识产权' }]
+          children: [
+            { path: '/paper', title: '论文' },
+            { path: '/book', title: '著作' },
+            { path: '/award', title: '获奖成果' },
+            { path: '/report', title: '报告' }
+          ]
         }
       },
       {
@@ -66,7 +75,7 @@ export const constantRouterMap = [
           title: '系统管理',
           icon: 'setting',
           isLoading: true,
-          children: [{ path: '/list', title: '用户列表' }, { path: '/roles', title: '角色管理' }]
+          children: [{ path: '/list', title: '用户列表' }, { path: '/management', title: '管理文件' }, { path: '/setting', title: '系统配置' }]
         }
       },
       {
@@ -105,9 +114,17 @@ export const constantRouterMap = [
         }
       },
       {
-        path: '/achievements/intellectual',
-        name: 'Intellectual',
+        path: '/achievements/book',
+        name: '著作',
         component: Achievements,
+        mate: {
+          isLoading: false
+        }
+      },
+      {
+        path: '/achievements/award',
+        name: '获奖成果',
+        component: Award,
         mate: {
           isLoading: false
         }
@@ -121,9 +138,17 @@ export const constantRouterMap = [
         }
       },
       {
-        path: '/system/roles',
-        name: '角色管理',
-        component: Achievements,
+        path: '/system/management',
+        name: '管理文件',
+        component: Management,
+        mate: {
+          isLoading: false
+        }
+      },
+      {
+        path: '/system/setting',
+        name: '系统配置',
+        component: Setting,
         mate: {
           isLoading: false
         }

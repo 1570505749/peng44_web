@@ -6,78 +6,39 @@
     style="width: 100%"
   >
     <el-table-column
-      label="项目编号"
+      label="编号"
       width="170"
       align="center"
     >
       <template #default="scope">
-        <span style="margin-left: 10px">{{ scope.row.projectXid }}</span>
+        <span style="margin-left: 10px">{{ scope.row.mxid }}</span>
       </template>
     </el-table-column>
     <el-table-column
-      label="项目名称"
-      width="350"
+      label="文件名"
+      width="500"
       align="center"
     >
       <template #default="scope">
-        <span style="margin-left: 10px">{{ scope.row.projectName }}</span>
+        <span style="margin-left: 10px">{{ scope.row.title }}</span>
       </template>
     </el-table-column>
     <el-table-column
-      label="项目来源"
-      width="180"
+      label="文件内容"
+      width="600"
       align="center"
     >
       <template #default="scope">
-        <span style="margin-left: 10px">{{ scope.row.source }}</span>
+        <a style="margin-left: 10px" :href="scope.row.info" target="_blank">{{ scope.row.contentName }}</a>
       </template>
     </el-table-column>
     <el-table-column
-      label="项目概述"
-      width="280"
-      align="center"
-    >
-      <template #default="scope">
-        <span style="margin-left: 10px">{{ scope.row.summary }}</span>
-      </template>
-    </el-table-column>
-    <el-table-column
-      label="立项时间"
+      label="发布时间"
       width="250"
       align="center"
     >
       <template #default="scope">
-        <span style="margin-left: 10px">{{ scope.row.projectTime }}</span>
-      </template>
-    </el-table-column>
-    <el-table-column
-      label="审核结果"
-      width="150"
-      align="center"
-    >
-      <template #default="scope">
-
-        <el-tag
-          v-if="scope.row.reviewResult === 'Y'"
-          type="success"
-          effect="plain"
-        >
-          审核通过
-        </el-tag>
-        <el-tag
-          v-if="scope.row.reviewResult === 'N'"
-          type="danger"
-          effect="plain"
-        >
-          未通过
-        </el-tag>
-        <el-tag
-          v-if="scope.row.reviewResult === 'O'"
-          type="warning"
-          effect="plain"
-        >
-          未审核
-        </el-tag>
+        <span style="margin-left: 10px">{{ scope.row.createdTime }}</span>
       </template>
     </el-table-column>
     <el-table-column label="操作" align="center">
@@ -97,10 +58,10 @@
 </template>
 
 <script>
-import ProjectApi from '@/apis/achievement/project/project'
+import ManagementApi from '@/apis/management/management'
 
 export default {
-  name: 'Paper',
+  name: 'Management',
   data() {
     return {
       page: {
@@ -110,13 +71,13 @@ export default {
         totalCount: 0, // 总条数
         params: {}, // 查询参数对象
         list: [], // 数据
-        sortColumn: 'project_time', // 排序列
+        sortColumn: 'created_time', // 排序列
         sortMethod: 'asc' // 排序方式
       },
       Project: {
-        projectId: '',
-        projectXid: '',
-        projectName: ''
+        mid: '',
+        mXid: '',
+        title: ''
       },
       loading: true
     }
@@ -126,7 +87,7 @@ export default {
   },
   methods: {
     getByPage() {
-      ProjectApi.getByPage(this.page).then(res => {
+      ManagementApi.getByPage(this.page).then(res => {
         this.page = res.data
         this.loading = false
       })

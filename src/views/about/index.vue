@@ -1,5 +1,5 @@
 <template>
-  <a-layout style="padding: 24px 0; background: #fff;min-height: 850px">
+  <a-layout style="background: #fff;min-height: 850px">
     <a-layout-sider width="200" style="background: #fff">
       <a-menu
         v-model="current"

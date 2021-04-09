@@ -6,48 +6,39 @@
     style="width: 100%"
   >
     <el-table-column
-      label="项目编号"
-      width="170"
+      label="获奖成果名称"
+      width="450"
       align="center"
     >
       <template #default="scope">
-        <span style="margin-left: 10px">{{ scope.row.projectXid }}</span>
+        <span style="margin-left: 10px">{{ scope.row.information }}</span>
       </template>
     </el-table-column>
     <el-table-column
-      label="项目名称"
+      label="奖励名称"
       width="350"
       align="center"
     >
       <template #default="scope">
-        <span style="margin-left: 10px">{{ scope.row.projectName }}</span>
+        <span style="margin-left: 10px">{{ scope.row.ranking }}</span>
       </template>
     </el-table-column>
     <el-table-column
-      label="项目来源"
+      label="颁奖单位"
       width="180"
       align="center"
     >
       <template #default="scope">
-        <span style="margin-left: 10px">{{ scope.row.source }}</span>
+        <span style="margin-left: 10px">{{ scope.row.rewardUnit }}</span>
       </template>
     </el-table-column>
     <el-table-column
-      label="项目概述"
-      width="280"
+      label="科时"
+      width="180"
       align="center"
     >
       <template #default="scope">
-        <span style="margin-left: 10px">{{ scope.row.summary }}</span>
-      </template>
-    </el-table-column>
-    <el-table-column
-      label="立项时间"
-      width="250"
-      align="center"
-    >
-      <template #default="scope">
-        <span style="margin-left: 10px">{{ scope.row.projectTime }}</span>
+        <span style="margin-left: 10px">{{ scope.row.keshi }}</span>
       </template>
     </el-table-column>
     <el-table-column
@@ -97,10 +88,10 @@
 </template>
 
 <script>
-import ProjectApi from '@/apis/achievement/project/project'
+import AwardApi from '@/apis/achievement/award/award'
 
 export default {
-  name: 'Paper',
+  name: 'Award',
   data() {
     return {
       page: {
@@ -110,13 +101,12 @@ export default {
         totalCount: 0, // 总条数
         params: {}, // 查询参数对象
         list: [], // 数据
-        sortColumn: 'project_time', // 排序列
+        sortColumn: 'date', // 排序列
         sortMethod: 'asc' // 排序方式
       },
-      Project: {
-        projectId: '',
-        projectXid: '',
-        projectName: ''
+      Paper: {
+        aid: '',
+        information: ''
       },
       loading: true
     }
@@ -126,7 +116,7 @@ export default {
   },
   methods: {
     getByPage() {
-      ProjectApi.getByPage(this.page).then(res => {
+      AwardApi.getByPage(this.page).then(res => {
         this.page = res.data
         this.loading = false
       })
