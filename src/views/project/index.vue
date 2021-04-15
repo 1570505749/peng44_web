@@ -2,8 +2,9 @@
   <div>
     <a-row :gutter="16">
       <a-col :span="8">
-        <a-card title="Card title">
-          <p>card content</p>
+        <a-card>
+          <h1 slot="title">项目总数</h1>
+          <p>20</p>
         </a-card>
       </a-col>
       <a-col :span="8">
