@@ -49,6 +49,7 @@ import {
   Comment,
   Empty,
   Result,
+  Descriptions,
   Message
 } from 'ant-design-vue'
 
@@ -99,6 +100,7 @@ Vue.use(Skeleton)
 Vue.use(Comment)
 Vue.use(Empty)
 Vue.use(Result)
+Vue.use(Descriptions)
 
 Vue.prototype.$Message = Message
 

@@ -3,13 +3,15 @@ const Home = () => import('../views/home')
 const About = () => import('../views/about')
 const Read = () => import('../views/read')
 const Project = () => import('../views/project')
-const Achievements = () => import('../views/achievements')
+const ProjectDetail = () => import('../views/project/detail')
+const Assess = () => import('../views/assess')
 const NotFoundComponent = () => import('../views/exception/404')
 const UserList = () => import('../views/sys/user')
 const Paper = () => import('../views/achievements/paper')
 const Management = () => import('../views/sys/management')
 const Setting = () => import('../views/sys/setting')
 const Award = () => import('../views/achievements/award')
+const Book = () => import('../views/achievements/book')
 
 /**
  * 基础路由
@@ -24,7 +26,7 @@ export const constantRouterMap = [
     children: [
       {
         path: '/home',
-        name: 'Home',
+        name: '仪表盘',
         component: Home,
         mate: {
           title: '仪表盘',
@@ -34,7 +36,7 @@ export const constantRouterMap = [
       },
       {
         path: '/project',
-        name: 'Project',
+        name: '项目管理',
         component: Project,
         mate: {
           title: '项目管理',
@@ -43,9 +45,18 @@ export const constantRouterMap = [
         }
       },
       {
+        path: '/project/read/:id',
+        name: '项目详情',
+        component: ProjectDetail,
+        mate: {
+          title: '项目详情',
+          isLoading: false
+        }
+      },
+      {
         path: '/assessment',
-        name: 'Assessment',
-        component: Project,
+        name: '考核管理',
+        component: Assess,
         mate: {
           title: '考核管理',
           icon: 'line-chart',
@@ -62,8 +73,7 @@ export const constantRouterMap = [
           children: [
             { path: '/paper', title: '论文' },
             { path: '/book', title: '著作' },
-            { path: '/award', title: '获奖成果' },
-            { path: '/report', title: '报告' }
+            { path: '/award', title: '获奖成果' }
           ]
         }
       },
@@ -98,16 +108,8 @@ export const constantRouterMap = [
         }
       },
       {
-        path: '/achievements/report',
-        name: 'Report',
-        component: Achievements,
-        mate: {
-          isLoading: false
-        }
-      },
-      {
         path: '/achievements/paper',
-        name: 'Paper',
+        name: '论文',
         component: Paper,
         mate: {
           isLoading: false
@@ -116,7 +118,7 @@ export const constantRouterMap = [
       {
         path: '/achievements/book',
         name: '著作',
-        component: Achievements,
+        component: Book,
         mate: {
           isLoading: false
         }
