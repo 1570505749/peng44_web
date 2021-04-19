@@ -15,7 +15,7 @@
       </template>
     </el-table-column>
     <el-table-column
-      label="教师姓名"
+      label="姓名"
       width="180"
       align="center"
     >
@@ -66,7 +66,7 @@
     </el-table-column>
     <el-table-column label="操作" align="center">
       <template #default="scope">
-        <el-button size="mini" type="success" @click="handleEdit(scope.$index, scope.row)">查看考核报告</el-button>
+        <el-button size="mini" type="success" @click="report(scope.$index, scope.row)">查看考核报告</el-button>
         <el-button
           size="mini"
           type="danger"
@@ -109,6 +109,11 @@ export default {
       AssessApi.getByPage(this.page).then(res => {
         this.page = res.data
         this.loading = false
+      })
+    },
+    report(index, row) {
+      this.$router.push({
+        path: '/assessment/report/' + row.assessId
       })
     },
     handleEdit(index, row) {

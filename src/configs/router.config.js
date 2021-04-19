@@ -14,6 +14,8 @@ const Award = () => import('../views/achievements/award')
 const Book = () => import('../views/achievements/book')
 const AssessSetting = () => import('../views/assess/setting')
 const AssessForm = () => import('../views/assess/report-form')
+const Audit = () => import('../views/audit')
+const AssessReport = () => import('../views/assess/report')
 
 /**
  * 基础路由
@@ -78,6 +80,15 @@ export const constantRouterMap = [
         }
       },
       {
+        path: '/assessment/report/:id',
+        name: '考核报告',
+        component: AssessReport,
+        mate: {
+          title: '考核报告',
+          isLoading: false
+        }
+      },
+      {
         path: '/assessment/assess-form',
         name: '报表列表',
         component: AssessForm,
@@ -110,7 +121,7 @@ export const constantRouterMap = [
       {
         path: '/audit',
         name: '数据审核',
-        component: About,
+        component: Audit,
         mate: {
           title: '数据审核',
           icon: 'file-done',

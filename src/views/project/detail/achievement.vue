@@ -1,13 +1,16 @@
 <template>
-  <div id="achievement" />
+  <div>
+    <div id="achievement" />
+    <h3 :style="{marginLeft:'45%'}">项目成果统计</h3>
+  </div>
 </template>
 
 <script>
 import { Chart } from '@antv/g2'
 
 const data = [
-  { time: '9:00-10:00', value: 30 },
-  { time: '10:00-11:00', value: 90 },
+  { time: '论文', value: 30 },
+  { time: '获奖', value: 90 },
   { time: '11:00-12:00', value: 50 },
   { time: '12:00-13:00', value: 30 },
   { time: '13:00-14:00', value: 70 }

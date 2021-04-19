@@ -6,14 +6,14 @@
 import { Chart } from '@antv/g2'
 
 const data = [
-  { time: '9:00-10:00', value: 30 },
-  { time: '10:00-11:00', value: 90 },
-  { time: '11:00-12:00', value: 50 },
-  { time: '12:00-13:00', value: 30 },
-  { time: '13:00-14:00', value: 70 },
-  { time: '14:00-15:00', value: 30 },
-  { time: '15:00-17:00', value: 60 },
-  { time: '17:00-18:00', value: 20 }
+  { time: '国家级重大项目（A类）', value: 30 },
+  { time: '国家级重大项目（B类）', value: 90 },
+  { time: '国家级重点项目', value: 50 },
+  { time: '国家级一般项目', value: 30 },
+  { time: '省部级重大（重点）项目', value: 70 },
+  { time: '省部级一般项目', value: 30 },
+  { time: '市厅级项目（含校级）', value: 60 },
+  { time: '横向项目', value: 20 }
 ]
 
 export default {
@@ -35,7 +35,7 @@ export default {
       })
       chart.data(data)
       chart.scale('value', {
-        alias: '销售额(万)',
+        alias: '项目数',
         nice: true
       })
       chart.axis('time', {
@@ -49,7 +49,7 @@ export default {
 
       chart.interval().position('time*value')
         .style('time', val => {
-          if (val === '13:00-14:00') {
+          if (val === '横向项目') {
             return {
               fillOpacity: 0.4,
               lineWidth: 1,
